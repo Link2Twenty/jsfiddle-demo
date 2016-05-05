@@ -1,55 +1,142 @@
 <link rel="import" href="../polymer/polymer.html">
+
+<!--
+  Polymer element for displaying jsfiddles
+
+  @element jsfiddle-demo
+  @demo demo/index.html
+-->
 <dom-module name="jsfiddle-demo">
   <template>
-    <template is="dom-if" restamp if="[[usernameAndFiddlePresent(username, fiddle)]]">
-      <script async src='https://jsfiddle.net/{{username}}/{{fiddle}}/[[addSlash(version)]]embed/[[includedTabs()]]/{{theme}}/'></script>
+    <template is="dom-if" restamp if="[[_usernameAndFiddlePresent(username, fiddle)]]">
+      <script async src='https://jsfiddle.net/{{username}}/{{fiddle}}/[[_addSlash(version)]]embed/[[_includedTabs()]]/{{theme}}/'></script>
     </template>
   </template>
   <script>
     Polymer({
       is: 'jsfiddle-demo',
       properties: {
+        /** 
+        * String for username
+        *
+        * @attribute username
+        * @type String
+        * @default ""
+        */
         username: {
           type: String,
         },
+        /** 
+        * String for fiddle ID
+        *
+        * @attribute fiddle
+        * @type String
+        * @default ""
+        */
         fiddle: {
           type: String,
         },
+        /** 
+        * String for version NO.
+        *
+        * @attribute version
+        * @type String
+        * @default ""
+        */
         version: {
           type: String,
           value: '0'
         },
+        /** 
+        * String for theme
+        *
+        * @attribute theme
+        * @type String
+        * @default "light"
+        */
         theme: {
           type: String,
           value: 'light'
         },
+        /** 
+        * Boolean for inclusion of
+        * Javascript tab
+        *
+        * @attribute javascript
+        * @type Boolean
+        * @default false
+        */
         javascript: {
           type: Boolean,
         },
+        /** 
+        * Boolean for inclusion of
+        * html tab
+        *
+        * @attribute html
+        * @type Boolean
+        * @default false
+        */
         html: {
           type: Boolean,
         },
+        /** 
+        * Boolean for inclusion of
+        * css tab
+        *
+        * @attribute css
+        * @type Boolean
+        * @default false
+        */
         css: {
           type: Boolean,
         },
+        /** 
+        * Boolean for inclusion of
+        * resources tab
+        *
+        * @attribute resources
+        * @type Boolean
+        * @default false
+        */
         resources: {
           type: Boolean,
         },
+        /** 
+        * Boolean for inclusion of
+        * results tab
+        *
+        * @attribute result
+        * @type Boolean
+        * @default false
+        */
         result: {
           type: Boolean,
         }
       },
-      usernameAndFiddlePresent: function(username, fiddle) {
+      _usernameAndFiddlePresent: function(username, fiddle) {
         return (username && fiddle);
       },
-      addSlash: function(version) {
+      /**
+      * Method to add / after the
+      * version number if one is 
+      * present
+      *
+      */
+      _addSlash: function(version) {
         if (this.version > 0) {
           return this.version + '/';
         } else {
           return null;
         }
       },
-      includedTabs: function() {
+      /**
+      * Method to turn boolean
+      * into string to be used 
+      * for tabs
+      *
+      */
+      _includedTabs: function() {
         var tabs = "";
 
         function checkNull() {
