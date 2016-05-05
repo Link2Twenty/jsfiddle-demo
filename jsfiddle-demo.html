@@ -1,0 +1,70 @@
+<link rel="import" href="https://polygit.org/components/polymer/polymer.html">
+<dom-module name="jsfiddle-demo">
+  <template>
+    <template is="dom-if" restamp if="[[usernameAndFiddlePresent(username, fiddle)]]">
+      <script async src='https://jsfiddle.net/{{username}}/{{fiddle}}/[[addSlash(version)]]embed/[[includedTabs()]]/{{theme}}/'></script>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'jsfiddle-demo',
+      properties: {
+        username: {
+          type: String,
+        },
+        fiddle: {
+          type: String,
+        },
+        version: {
+          type: String,
+          value: '0'
+        },
+        theme: {
+          type: String,
+          value: 'light'
+        },
+        javascript: {
+          type: Boolean,
+        },
+        html: {
+          type: Boolean,
+        },
+        css: {
+          type: Boolean,
+        },
+        resources: {
+          type: Boolean,
+        },
+        result: {
+          type: Boolean,
+        }
+      },
+      usernameAndFiddlePresent: function(username, fiddle) {
+        return (username && fiddle);
+      },
+      addSlash: function(version) {
+        if (this.version > 0) {
+          return this.version + '/';
+        } else {
+          return null;
+        }
+      },
+      includedTabs: function() {
+        var tabs = "";
+
+        function checkNull() {
+          if (tabs !== "") {
+            tabs += ',';
+          }
+        };
+        
+        this.javascript && (checkNull(), tabs += "js");
+        this.html && (checkNull(), tabs += "html");
+        this.css && (checkNull(), tabs += "css");
+        this.resources && (checkNull(), tabs += "resources");
+        this.result && (checkNull(), tabs += "result");
+        return tabs;
+      }
+    });
+  </script>
+</dom-module>
