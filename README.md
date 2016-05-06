@@ -41,7 +41,7 @@ Custom property | Description | Default
 
 If you are looking at useing other peoples custom polymer elements I am going to guess you have some idea what's going on already. If not have a look at the [polymer site](http://polymer-project.org).
 
-Put a link to l2t-context-menu in your header, it should look something like.
+Put a link to jsfiddle-demo in your header, it should look something like.
 ```html
 <link rel="import" href="bower_components/jsfiddle-demo/jsfiddle-demo.html">
 ```
