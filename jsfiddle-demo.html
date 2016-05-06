@@ -2,14 +2,40 @@
 
 <!--
   Polymer element for displaying jsfiddles
+  
+  
+  ### Examples
+    
+    Here is a base example, all you need to get up and running is the username of the fiddle owner and the fiddle's ID, both of which you can get from the URL of the fiddle
+    
+      <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq"></jsfiddle-demo>
+      
+    There are lots of other properties you can use, here is an example using all the properties available
+    
+      <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" version="4" theme="dark" javascript html css resources result></jsfiddle-demo>
+
+  ### Styling
+    
+  The following custom properties are available for styling:
+
+  Custom property | Description | Default
+  ----------------|-------------|----------
+  `--jsfiddle-demo-height` | Height of the jsfiddle iframe. | `500px`
+  `--jsfiddle-demo-width` | Width of the jsfiddle iframe. | `100%`
 
   @element jsfiddle-demo
   @demo demo/index.html
 -->
 <dom-module name="jsfiddle-demo">
+  <style>
+    :host > iframe {
+      height: var(--jsfiddle-demo-height, 500px);
+      width: var(--jsfiddle-demo-width, 100%);
+    }
+  </style>
   <template>
     <template is="dom-if" restamp if="[[_usernameAndFiddlePresent(username, fiddle)]]">
-      <script async src='https://jsfiddle.net/{{username}}/{{fiddle}}/[[_addSlash(version)]]embed/[[_includedTabs()]]/{{theme}}/'></script>
+      <iframe src="https://jsfiddle.net/{{username}}/{{fiddle}}/[[_addSlash(version)]]embedded/[[_includedTabs()]]/{{theme}}/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
     </template>
   </template>
   <script>
