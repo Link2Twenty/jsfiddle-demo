@@ -11,7 +11,7 @@ Have a quick look at the [Component page](http://link2twenty.github.io/jsfiddle-
 First you need bower, [see their site](http://bower.io/) for details 
 
 ```
-bower install --save l2t-context-menu
+bower install --save jsfiddle-demo
 ```
 
 ### Attributes
