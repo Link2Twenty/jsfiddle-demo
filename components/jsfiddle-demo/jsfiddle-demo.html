@@ -1,0 +1,183 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+  Polymer element for displaying jsfiddles
+  
+  
+  ### Examples
+    
+    Here is a base example, all you need to get up and running is the username of the fiddle owner and the fiddle's ID, both of which you can get from the URL of the fiddle
+    
+      <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq"></jsfiddle-demo>
+      
+    There are lots of other properties you can use, here is an example using all the properties available
+    
+      <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" version="4" theme="dark" javascript html css resources result></jsfiddle-demo>
+
+  ### Styling
+    
+  The following custom properties are available for styling:
+
+  Custom property | Description | Default
+  ----------------|-------------|----------
+  `--jsfiddle-demo-height` | Height of the jsfiddle iframe. | `500px`
+  `--jsfiddle-demo-width` | Width of the jsfiddle iframe. | `100%`
+
+  @element jsfiddle-demo
+  @demo demo/index.html
+-->
+<dom-module name="jsfiddle-demo">
+  <style>
+    :host > iframe {
+      height: var(--jsfiddle-demo-height, 500px);
+      width: var(--jsfiddle-demo-width, 100%);
+    }
+  </style>
+  <template>
+    <template is="dom-if" restamp if="[[_usernameAndFiddlePresent(username, fiddle)]]">
+      <iframe src="https://jsfiddle.net/{{username}}/{{fiddle}}/[[_addSlash(version)]]embedded/[[_includedTabs()]]/{{theme}}/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'jsfiddle-demo',
+      properties: {
+        /** 
+        * String for username
+        *
+        * @attribute username
+        * @type String
+        * @default ""
+        */
+        username: {
+          type: String,
+        },
+        /** 
+        * String for fiddle ID
+        *
+        * @attribute fiddle
+        * @type String
+        * @default ""
+        */
+        fiddle: {
+          type: String,
+        },
+        /** 
+        * String for version NO.
+        *
+        * @attribute version
+        * @type String
+        * @default ""
+        */
+        version: {
+          type: String,
+          value: '0'
+        },
+        /** 
+        * String for theme
+        *
+        * @attribute theme
+        * @type String
+        * @default "light"
+        */
+        theme: {
+          type: String,
+          value: 'light'
+        },
+        /** 
+        * Boolean for inclusion of
+        * Javascript tab
+        *
+        * @attribute javascript
+        * @type Boolean
+        * @default false
+        */
+        javascript: {
+          type: Boolean,
+        },
+        /** 
+        * Boolean for inclusion of
+        * html tab
+        *
+        * @attribute html
+        * @type Boolean
+        * @default false
+        */
+        html: {
+          type: Boolean,
+        },
+        /** 
+        * Boolean for inclusion of
+        * css tab
+        *
+        * @attribute css
+        * @type Boolean
+        * @default false
+        */
+        css: {
+          type: Boolean,
+        },
+        /** 
+        * Boolean for inclusion of
+        * resources tab
+        *
+        * @attribute resources
+        * @type Boolean
+        * @default false
+        */
+        resources: {
+          type: Boolean,
+        },
+        /** 
+        * Boolean for inclusion of
+        * results tab
+        *
+        * @attribute result
+        * @type Boolean
+        * @default false
+        */
+        result: {
+          type: Boolean,
+        }
+      },
+      _usernameAndFiddlePresent: function(username, fiddle) {
+        return (username && fiddle);
+      },
+      /**
+      * Method to add / after the
+      * version number if one is 
+      * present
+      *
+      */
+      _addSlash: function(version) {
+        if (this.version > 0) {
+          return this.version + '/';
+        } else {
+          return null;
+        }
+      },
+      /**
+      * Method to turn boolean
+      * into string to be used 
+      * for tabs
+      *
+      */
+      _includedTabs: function() {
+        var tabs = "";
+
+        function checkNull() {
+          if (tabs !== "") {
+            tabs += ',';
+          }
+        };
+        
+        this.javascript && (checkNull(), tabs += "js");
+        this.html && (checkNull(), tabs += "html");
+        this.css && (checkNull(), tabs += "css");
+        this.resources && (checkNull(), tabs += "resources");
+        this.result && (checkNull(), tabs += "result");
+        return tabs;
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,45 @@
+ <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>jsfiddle demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../jsfiddle-demo.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <style>
+      .container {
+        display: inline;
+      }
+    </style>
+    <style is="custom-style">
+      .container > jsfiddle-demo {
+        --jsfiddle-demo-width:33%;
+        --jsfiddle-demo-height: 250px;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <demo-snippet>
+      <template>
+        <div class="container">
+          <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" version=1 html resources result></jsfiddle-demo>
+          <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" version=2 html resources result></jsfiddle-demo>
+          <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" version=3 html resources result></jsfiddle-demo>
+        </div>
+      </template>
+    </demo-snippet>
+    <demo-snippet><b>Styling:</b> (This needs to be in the head section)
+      <template>
+        <style is="custom-style">
+          .container > jsfiddle-demo {
+            --jsfiddle-demo-width:33%;
+            --jsfiddle-demo-height: 250px;
+          }
+        </style>
+      </template>
+    </demo-snippet>
+    <jsfiddle-demo username="link2twenty" fiddle="6ppzpuoq" theme="dark" javascript html resources result></jsfiddle-demo>
+  </body>
+</html>

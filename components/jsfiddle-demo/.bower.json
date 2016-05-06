@@ -1,0 +1,32 @@
+{
+  "name": "jsfiddle-demo",
+  "homepage": "https://github.com/Link2Twenty/jsfiddle-demo",
+  "authors": [
+    "Andrew Bone <AndrewB05@gmail.com>"
+  ],
+  "description": "Polymer element to wrap jsfiddle embedding",
+  "main": "index.html",
+  "keywords": [
+    "polymer",
+    "polymer-1.0",
+    "web-components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "ba417342b8",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ba417342b876d12957871e274b86fe7e886a6a26"
+  },
+  "_source": "https://github.com/Link2Twenty/jsfiddle-demo.git",
+  "_target": "*",
+  "_originalSource": "jsfiddle-demo",
+  "_direct": true
+}
